@@ -4,6 +4,15 @@
     border-radius: 50%;
 }
 
+.login-btn{
+    background-color: #562EFF;
+    color: white;
+}
+
+.login-btn > a{
+    padding: 0px 20px;
+}
+
 .dropdown{
     color: black;
 }

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 const NavMenu = () => {
+    const {user} = useContext(AuthContext);
     return (
         <>
             <div className="navbar bg-base-100 md:px-10 sm:px-0">
@@ -34,6 +37,9 @@ const NavMenu = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+
+                { user ?
+                <div>
                 <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
                     <li><Link to={"/dashboard"}>Dashboard</Link></li>
                 </ul>
@@ -55,6 +61,14 @@ const NavMenu = () => {
                         <li><a>Logout</a></li>
                     </ul>
                     </div>
+                    </div>
+                    :
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
+                            <button className="btn login-btn"><Link to={"/login"}>Login</Link></button>
+                        </ul>
+                    </ul>
+                    }
                     </div>
                 </div>
         </>
