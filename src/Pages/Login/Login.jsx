@@ -1,4 +1,5 @@
-import React from 'react';
+import { Link } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
     return (
@@ -7,9 +8,9 @@ const Login = () => {
                 <div className="hero-content flex-col
                 lg:flex-row-reverse lg:w-9/12 justify-content-center">
                     <div className="text-center lg:text-left">
-                    <h2 className='text-5xl font-bold'>Already a User?</h2>
+                    <h2 className='text-2xl font-bold'>It's so good to have you back!</h2>
                     <h2 className="text-5xl font-bold">Login now!</h2>
-                    <p className="pt-6 pb-3">Don't Have an Account? <a className='link'>Register Here</a></p>
+                    <p className="pt-6 pb-3">Don't have an account yet? <Link to="/register" className='link register-link'>Register Here</Link></p>
                     <p>Join us today & Learn the Art of photography on the go!</p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -28,10 +29,10 @@ const Login = () => {
                                 <input type="password" placeholder="Enter your password" className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn text-white login-btn">Login</button>
                                 </div>
-                                <div className="google-login-btn form-control mt-6">
-                                <button className="btn btn-primary">Login With Google</button>
+                                <div className="form-control mt-6">
+                                <button className="btn google-login-btn hover">Login With Google</button>
                                 </div>
                             </div>
                         </form>
