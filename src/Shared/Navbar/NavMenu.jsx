@@ -1,7 +1,8 @@
+import "./NavMenu.css";
 const NavMenu = () => {
     return (
         <>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 md:px-10 sm:px-0">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -19,7 +20,7 @@ const NavMenu = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                     </div>
-                    <img src="logo.png" />
+                    <img className="brand-logo" src="logo.png" />
                     <a className="btn btn-ghost normal-case text-xl">Mos Media</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -36,7 +37,7 @@ const NavMenu = () => {
                     <li><a>Dashboard</a></li>
                 </ul>
 
-                    <div className="dropdown dropdown-end">
+                    <div className="dropdown dropdown-end user-profile">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                         <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
