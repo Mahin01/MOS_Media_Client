@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
+    const {userSignIn} = useContext(AuthContext);
+
+    const handleUserSignIn = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.pwd.value;
+        console.log(email, password);
+        userSignIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+            })
+    }
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -14,19 +31,19 @@ const Login = () => {
                     <p>Join us today & Learn the Art of photography on the go!</p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form>
+                        <form onSubmit={handleUserSignIn}>
                             <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="Enter your email" className="input input-bordered" required/>
+                                <input type="email" placeholder="Enter your email" name="email" className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="Enter your password" className="input input-bordered" required/>
+                                <input type="password" placeholder="Enter your password" name="pwd" className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control mt-6">
                                 <button className="btn text-white login-btn">Login</button>
