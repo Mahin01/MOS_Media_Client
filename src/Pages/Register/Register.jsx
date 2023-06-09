@@ -1,30 +1,47 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {console.log(data)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigateUser = useNavigate();
+
+    const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
                 updateUserProfile(data.name, data.photoUrl)
                 .then(result => {
-                Swal.fire({
+                    const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phone_no, address: data.address};
+                    fetch('http://localhost:5000/users', {
+                        method: 'POST', 
+                        headers: {
+                            'content-type': 'application/json'
+                        }, 
+                        body: JSON.stringify(saveUserToDb)
+                    })
+                    .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                reset();
+                    Swal.fire({
                     title: 'User Registration Successful. Please Log in to Learn the art of Photography',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
                     hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
+                        popup: 'animate__animated animate__fadeOutUp'  
                     }
-                });
-               <Navigate to={"/login"}></Navigate>
+                    });
+                    navigateUser('/');
+                }
             })
         })
-    }
+        .catch(error => console.log(error))
+    })
+}
     return (
         <>
            <div className="hero bg-base-200">

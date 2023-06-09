@@ -1,7 +1,7 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./NavMenu.css";
 import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import { AuthContext } from "../../../Providers/AuthProvider";
 const NavMenu = () => {
     const navigator = useNavigate;
     const {user, logOut} = useContext(AuthContext);
