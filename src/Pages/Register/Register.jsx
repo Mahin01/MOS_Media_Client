@@ -2,24 +2,18 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
-
-    const handleUserSignUp = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.pwd.value;
-        const phone = form.phone_no.value;
-        const photoUrl = form.photoURL.value;
-        createUser(email, password)
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {console.log(data)
+        createUser(data.email, data.password)
             .then(result => {
-                updateUserProfile(name, phone, photoUrl)
+                updateUserProfile(data.name, data.photoUrl)
                 .then(result => {
                 Swal.fire({
-                    title: 'User Registration Successful. Please Log in to Learn art of Awesomeness',
+                    title: 'User Registration Successful. Please Log in to Learn the art of Photography',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
@@ -42,63 +36,73 @@ const Register = () => {
                     <p className="pt-6 pb-3">Already have an account? <a className='link register-link'>Login Here</a></p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleUserSignUp}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="Enter your Name" name='name' className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your Name" {...register("name", { required: true })} name='name' className="input input-bordered"/>
+                                {errors.name && <span className='text-red-500'>Name is required</span>}
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="Enter your email" name='email' className="input input-bordered" required/>
+                                <input type="email" placeholder="Enter your email" {...register("email", { required: true })} name='email' className="input input-bordered"/>
+                                {errors.email && <span className='text-red-500'>Email is required</span>}
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Gender</span>
                                 </label>
-                                <select className="select select-bordered">
+                                <select className="select select-bordered" {...register("gender")}>
                                     <option disabled selected>Pick one</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
                                 </select>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Phone Number</span>
                                 </label>
-                                <input type="text" placeholder="Enter your phone number" name='phone_no' className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your phone number" {...register("phone_no")} name='phone_no' className="input input-bordered"/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="Type your password" name='pwd' className="input input-bordered" required/>
+                                <input type="password" placeholder="Type your password" name='pwd' {...register("password", {
+                                    required: true, 
+                                    minLength: 6,
+                                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                                 })}
+                                className="input input-bordered"/>
+                                {errors.password?.type === "required" && <p className='text-red-500'>Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className='text-red-500'>Password should be at least 6 characters</p>}
+                                {errors.password?.type === 'pattern' && <p className="text-red-600">Password should be a combination of uppercase, lowercase, number & special character.</p>}
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" placeholder="Re-type your password" className="input input-bordered" required/>
+                                <input type="password" placeholder="Re-type your password" {...register("confirmPwd", { required: true })}  className="input input-bordered"/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Address</span>
                                 </label>
-                                <input type="text" placeholder="Enter your Address" className="input input-bordered" required/>
+                                <input type="text" {...register("address")}  placeholder="Enter your Address" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" placeholder="Enter your Photo URL" name='photoURL' className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your Photo URL" {...register("photoURL", { required: true })}  name='photoURL' className="input input-bordered"/>
                                 </div>
                                 <div className="form-control mt-6">
-                                <button className="btn text-white login-btn">Register</button>
+                                <input type='submit' className="btn text-white login-btn" />
                                 </div>
                             </div>
                         </form>
