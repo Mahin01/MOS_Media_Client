@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+    const {createUser} = useContext(AuthContext);
+
+    const handleUserSignUp = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.pwd.value;
+        createUser(email, password)
+            .then(result => {
+                Swal.fire({
+                    title: 'User Registration Successful. Please Log in to Learn art of Awesomeness',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+               <Navigate to={"/login"}></Navigate>
+            })
+    }
     return (
         <>
            <div className="hero bg-base-200">
@@ -12,7 +36,7 @@ const Register = () => {
                     <p className="pt-6 pb-3">Already have an account? <a className='link register-link'>Login Here</a></p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form>
+                        <form onSubmit={handleUserSignUp}>
                             <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
@@ -24,7 +48,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="Enter your email" className="input input-bordered" required/>
+                                <input type="email" placeholder="Enter your email" name='email' className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                 <label className="label">
@@ -47,7 +71,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="Type your password" className="input input-bordered" required/>
+                                <input type="password" placeholder="Type your password" name='pwd' className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
