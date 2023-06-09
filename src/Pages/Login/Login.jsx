@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const {userSignIn} = useContext(AuthContext);
+    const {userSignIn, googleSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -33,6 +33,22 @@ const Login = () => {
                 navigate(from, { replace: true });
             })
     }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+            Swal.fire({
+                title: 'User Login Successful.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+            navigate(from, { replace: true });
+        })
+    }
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -45,8 +61,8 @@ const Login = () => {
                     <p>Join us today & Learn the Art of photography on the go!</p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body">
                         <form onSubmit={handleUserSignIn}>
-                            <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -62,12 +78,12 @@ const Login = () => {
                                 <div className="form-control mt-6">
                                 <button className="btn text-white login-btn">Login</button>
                                 </div>
-                                <div className="form-control mt-6">
-                                <button className="btn google-login-btn hover">Login With Google</button>
+                        </form>
+                                <div className="form-control mt-4">
+                                    <button onClick={handleGoogleSignIn} className="btn google-login-btn hover">Login With Google</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>
