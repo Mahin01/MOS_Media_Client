@@ -1,6 +1,6 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import app from '../Configs/Firebase/firebase.config';
-import { getAuth, signInWithEmailAndPassword} from "firebase/auth"
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth"
 
  export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -12,9 +12,23 @@ const AuthProvider = ({children}) => {
        return signInWithEmailAndPassword(auth, email, password);
     }
 
+    const logOut = () => {
+        return signOut(auth);
+    } 
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);     
+        });
+        return () => {
+            return unsubscribe();
+        }
+    }, [])
+
     const authInfo = {
         user,
-        userSignIn
+        userSignIn,
+        logOut
     }
 
     return (

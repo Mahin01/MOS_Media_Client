@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./NavMenu.css";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 const NavMenu = () => {
-    const {user} = useContext(AuthContext);
+    const navigator = useNavigate;
+    const {user, logOut} = useContext(AuthContext);
+    const handleUserLogOut = () => {
+        logOut()
+        .then(() => {
+        <Navigate to="/login"></Navigate>
+        })
+        .catch(error => {console.error(error)
+        });
+    }
     return (
         <>
             <div className="navbar bg-base-100 md:px-10 sm:px-0">
@@ -36,14 +45,14 @@ const NavMenu = () => {
                     <li><Link to={"/classes"}>Classes</Link></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
 
                 { user ?
+                <div className="navbar-end">
                 <div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
-                    <li><Link to={"/dashboard"}>Dashboard</Link></li>
-                </ul>
-
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
+                        <li><Link to={"/dashboard"}>Dashboard</Link></li>
+                    </ul>
+                </div>
                     <div className="dropdown dropdown-end user-profile">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
@@ -57,20 +66,20 @@ const NavMenu = () => {
                             <span className="badge">New</span>
                         </a>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li><button onClick={handleUserLogOut}>Logout</button></li>
                     </ul>
                     </div>
                     </div>
                     :
+                    <div className="navbar-end">
                     <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
                         <ul tabIndex={0} className="menu menu-sm dropdown-content p-2">
-                            <button className="btn login-btn"><Link to={"/login"}>Login</Link></button>
+                            <button className="login-btn"><Link to={"/login"}>Login</Link></button>
                         </ul>
                     </ul>
+                    </div>
                     }
                     </div>
-                </div>
         </>
     );
 };
