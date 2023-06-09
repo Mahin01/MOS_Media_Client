@@ -4,15 +4,20 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile} = useContext(AuthContext);
 
     const handleUserSignUp = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.pwd.value;
+        const phone = form.phone_no.value;
+        const photoUrl = form.photoURL.value;
         createUser(email, password)
             .then(result => {
+                updateUserProfile(name, phone, photoUrl)
+                .then(result => {
                 Swal.fire({
                     title: 'User Registration Successful. Please Log in to Learn art of Awesomeness',
                     showClass: {
@@ -24,6 +29,7 @@ const Register = () => {
                 });
                <Navigate to={"/login"}></Navigate>
             })
+        })
     }
     return (
         <>
@@ -42,7 +48,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="Enter your Name" className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your Name" name='name' className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
@@ -65,7 +71,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Phone Number</span>
                                 </label>
-                                <input type="text" placeholder="Enter your phone number" className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your phone number" name='phone_no' className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
@@ -89,7 +95,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" placeholder="Enter your Photo URL" className="input input-bordered" required/>
+                                <input type="text" placeholder="Enter your Photo URL" name='photoURL' className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control mt-6">
                                 <button className="btn text-white login-btn">Register</button>
