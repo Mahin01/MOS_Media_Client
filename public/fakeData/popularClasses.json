@@ -1,0 +1,92 @@
+[
+    {
+      "ID": 1,
+      "ImageName": "class1.jpg",
+      "ClassName": "Photography Basics",
+      "InstructorName": "John Smith",
+      "StudentEnrolled": 20,
+      "AvailableSeats": 10,
+      "Price": 100
+    },
+    {
+      "ID": 2,
+      "ImageName": "class2.jpg",
+      "ClassName": "Portrait Photography",
+      "InstructorName": "Emma Johnson",
+      "StudentEnrolled": 15,
+      "AvailableSeats": 15,
+      "Price": 120
+    },
+    {
+      "ID": 3,
+      "ImageName": "class3.jpg",
+      "ClassName": "Landscape Photography",
+      "InstructorName": "Michael Davis",
+      "StudentEnrolled": 8,
+      "AvailableSeats": 22,
+      "Price": 150
+    },
+    {
+      "ID": 4,
+      "ImageName": "class4.jpg",
+      "ClassName": "Street Photography",
+      "InstructorName": "Sarah Thompson",
+      "StudentEnrolled": 12,
+      "AvailableSeats": 18,
+      "Price": 80
+    },
+    {
+      "ID": 5,
+      "ImageName": "class5.jpg",
+      "ClassName": "Product Photography",
+      "InstructorName": "David Wilson",
+      "StudentEnrolled": 10,
+      "AvailableSeats": 20,
+      "Price": 200
+    },
+    {
+      "ID": 6,
+      "ImageName": "class6.jpg",
+      "ClassName": "Fashion Photography",
+      "InstructorName": "Olivia Brown",
+      "StudentEnrolled": 5,
+      "AvailableSeats": 25,
+      "Price": 250
+    },
+    {
+      "ID": 7,
+      "ImageName": "class7.jpg",
+      "ClassName": "Wedding Photography",
+      "InstructorName": "Daniel Miller",
+      "StudentEnrolled": 18,
+      "AvailableSeats": 12,
+      "Price": 90
+    },
+    {
+      "ID": 8,
+      "ImageName": "class8.jpg",
+      "ClassName": "Wildlife Photography",
+      "InstructorName": "Sophia Anderson",
+      "StudentEnrolled": 14,
+      "AvailableSeats": 16,
+      "Price": 110
+    },
+    {
+      "ID": 9,
+      "ImageName": "class9.jpg",
+      "ClassName": "Night Photography",
+      "InstructorName": "William Thomas",
+      "StudentEnrolled": 6,
+      "AvailableSeats": 24,
+      "Price": 180
+    },
+    {
+      "ID": 10,
+      "ImageName": "class10.jpg",
+      "ClassName": "Travel Photography",
+      "InstructorName": "Ava Martinez",
+      "StudentEnrolled": 25,
+      "AvailableSeats": 5,
+      "Price": 70
+    }
+]  
