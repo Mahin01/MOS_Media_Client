@@ -25,10 +25,7 @@ import Dashboard from "../Layout/Dashboard";
             path:"/classes",
             element:<Classes></Classes>
           },
-          {
-            path:"/dashboard",
-            element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
-          },
+
           {
             path: "/login",
             element: <Login></Login>
@@ -37,7 +34,11 @@ import Dashboard from "../Layout/Dashboard";
             path:"/register",
             element: <Register></Register>
           }
-        ]
+        ],
+    },
+    {
+      path:"/dashboard",
+      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
     }
 ]);
 
