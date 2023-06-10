@@ -5,7 +5,7 @@ const PopularClasses = () => {
     const [classesData, setClassesData] = useState();
 
     useEffect(() => {
-        fetch('fakeData/popularClasses.json')
+        fetch('fakeData/classes.json')
         .then(res => res.json())
         .then(data => {setClassesData(data);
         })    
