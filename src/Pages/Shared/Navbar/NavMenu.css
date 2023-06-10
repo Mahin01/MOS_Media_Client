@@ -13,3 +13,8 @@
 .dropdown{
     color: black;
 }
+
+.active-link{
+    color: #562EFF;
+    font-weight: bold;
+}
