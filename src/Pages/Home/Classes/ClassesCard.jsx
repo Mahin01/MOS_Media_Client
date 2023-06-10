@@ -19,13 +19,13 @@ const ClassesCard = ({data}) => {
                         <img src={item.ImageName} alt="Class Cover" className="rounded-xl" />
                     </figure>
                     <div className="card-body">
-                        <h2 className="card-title">{item.ClassName}</h2>
-                        <p className="text-xl text-orange-500">By {item.InstructorName}</p>
-                        <p className="text-xl text-orange-500">{item.StudentEnrolled} Enrolled</p>
-                        <p className="text-xl text-orange-500">Price: ${item.Price}</p>
+                        <h2 className="card-title text-slate-800">{item.ClassName}</h2>
+                        <p className="text-xl text-slate-600">By {item.InstructorName}</p>
+                        <p className="text-slate-700"><small>{item.StudentEnrolled} Enrolled</small></p>
+                        <p className="text-slate-700">Price: ${item.Price}</p>
                         <div className="card-actions">
                             <Link>
-                                <button className="btn btn-primary">Explore Class</button>
+                                <button style={{background:"#562EFF"}} className="btn text-white">Explore Class</button>
                             </Link>
                         </div>
                     </div>
