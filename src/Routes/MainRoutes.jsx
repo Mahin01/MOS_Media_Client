@@ -37,8 +37,11 @@ import Dashboard from "../Layout/Dashboard";
         ],
     },
     {
-      path:"/dashboard",
-      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+      path:"dashboard",
+      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+      children : [
+      ]
     }
+  
 ]);
 

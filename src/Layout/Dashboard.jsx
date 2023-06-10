@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isIntructor = true;
+    const isAdmin = false;
+    const isInstructor = false;
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -10,16 +11,32 @@ const Dashboard = () => {
                 <div className="drawer-content flex flex-col items-center justify-center">
                     {/* Page content here */}
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-                
+                <Outlet></Outlet>
                 </div> 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                    <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-                    {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    <ul className="menu px-4 py-20 w-60 h-full bg-slate-800 text-white">
+                    
+                    { isAdmin  ?
+                    <>
+                        <li><Link to="/dashboard/student-home">Admin Home</Link></li>
+                        <li><Link to="/dashboard/Selected-class">Manage Classes</Link></li>
+                        <li><Link to="/dashboard/enrolled-class">Manage Users</Link></li> 
+                    </> 
+                    : isInstructor ?
+                    <>
+                        <li><Link to="/dashboard/student-home">Instructor Home</Link></li>
+                        <li><Link to="/dashboard/Selected-class">Add a Class</Link></li>
+                        <li><Link to="/dashboard/enrolled-class">My Classes</Link></li>
+                    </>
+                    :
+                    <>
+                        <li><Link to="/dashboard/student-home">Student Home</Link></li>
+                        <li><Link to="/dashboard/Selected-class">My Selected Class</Link></li>
+                        <li><Link to="/dashboard/enrolled-class">My Enrolled Class</Link></li>
+                    </>
+                    }
                     </ul>
-                
                 </div>
             </div> 
         </>
