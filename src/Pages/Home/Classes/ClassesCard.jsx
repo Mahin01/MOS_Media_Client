@@ -12,10 +12,10 @@ const ClassesCard = ({data}) => {
     console.log(topClasses);
     
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10">
             {topClasses.map((item) => (
                 <div key={item.ID} className="card w-80 bg-base-100 shadow-xl">
-                    <figure className="px-10 pt-10">
+                    <figure className="pt-10">
                         <img src={item.ImageName} alt="Class Cover" className="rounded-xl" />
                     </figure>
                     <div className="card-body">
