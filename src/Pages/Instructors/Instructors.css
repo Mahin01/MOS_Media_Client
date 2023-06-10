@@ -1,0 +1,11 @@
+.page-title{
+    position: relative;
+    background-image: url('cover.jpg');
+    background-size: cover;
+}
+
+.page-title::after{
+    position: absolute;
+    background: rgb(87,101,234);
+    background: linear-gradient(137deg, rgba(87,101,234,1) 0%, rgba(141,64,160,1) 100%);
+}
