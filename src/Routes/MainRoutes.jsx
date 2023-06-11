@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
 import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
 import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
+import EnrolledClass from "../Pages/Dashboard/EnrolledClass/EnrolledClass";
 
  export const router = createBrowserRouter([
     {
@@ -49,7 +50,11 @@ import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
         {
           path:"selected-class",
           element: <SelectedClass></SelectedClass>
-        }
+        },
+        {
+          path:"enrolled-class",
+          element: <EnrolledClass></EnrolledClass>
+        },
       ]
     }
   
