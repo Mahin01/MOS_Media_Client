@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isInstructor = false;
+    const isAdmin = false;
+    const isInstructor = true;
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -25,9 +25,9 @@ const Dashboard = () => {
                     </> 
                     : isInstructor ?
                     <>
-                        <li><Link to="/dashboard/student-home">Instructor Home</Link></li>
-                        <li><Link to="/dashboard/Selected-class">Add a Class</Link></li>
-                        <li><Link to="/dashboard/enrolled-class">My Classes</Link></li>
+                        <li><Link to="/dashboard/instructor-home">Instructor Home</Link></li>
+                        <li><Link to="/dashboard/add-class">Add a Class</Link></li>
+                        <li><Link to="/dashboard/my-classes">My Classes</Link></li>
                     </>
                     :
                     <>
