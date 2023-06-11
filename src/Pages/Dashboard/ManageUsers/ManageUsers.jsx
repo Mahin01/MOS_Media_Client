@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
-import { AuthContext } from '../../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-    const { user } = useContext(AuthContext);
     const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
@@ -14,10 +12,7 @@ const ManageUsers = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(allUsers)
-
-  const handleDeleteClass = (id) => {
-    console.log(id);
+  const handleDeleteUser = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -25,10 +20,10 @@ const ManageUsers = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete user!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selected-class/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())
@@ -36,7 +31,7 @@ const ManageUsers = () => {
             if(data.deletedCount > 0){
                 Swal.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'User has been deleted.',
                     'success'
                 )
             }
@@ -60,17 +55,17 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers.map((item, index) => (
-              <tr key={item._id}>
+            {allUsers.map((user, index) => (
+              <tr key={user._id}>
                 <th>{index + 1}</th>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td> {item.gender} </td>
-                <td> {item.phoneNumber} </td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td> {user.gender} </td>
+                <td> {user.phoneNumber} </td>
                 <td><button className='btn text-2xl text-orange-400'><FaUserShield></FaUserShield></button></td>
                 <td>
                   <button
-                    onClick={() => handleDeleteClass(item?._id)}
+                    onClick={() => handleDeleteUser(user?._id)}
                     className="btn bg-red-600 text-white"
                   >
                     <FaTrashAlt />
