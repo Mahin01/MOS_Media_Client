@@ -11,6 +11,7 @@ import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
 import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
 import EnrolledClass from "../Pages/Dashboard/EnrolledClass/EnrolledClass";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 
  export const router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
         {
           path:"manage-users",
           element: <ManageUsers></ManageUsers>
+        },
+        {
+          path:"manage-classes",
+          element: <ManageClasses></ManageClasses>
         }
       ]
     }
