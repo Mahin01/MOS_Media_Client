@@ -8,6 +8,7 @@ import Classes from "../Pages/Classes/Classes";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
 import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
+import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
 
  export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
         {
         path: "student-home",
         element: <StudentHome></StudentHome>
+        },
+        {
+          path:"selected-class",
+          element: <SelectedClass></SelectedClass>
         }
       ]
     }

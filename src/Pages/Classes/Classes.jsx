@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Classes = () => {
+    const {user} = useContext(AuthContext);
     const [allClasses, setAllClasses] = useState([]);
     useEffect(() => {
         fetch('fakeData/classes.json')
@@ -11,6 +14,32 @@ const Classes = () => {
         })    
         .catch(error => console.error(error))
     }, []);
+
+    const handleAddToSelectedClass = item => {
+        const {ID, ClassName, InstructorName, StudentEnrolled, AvailableSeats, Price} = item;
+        if(user && user.email){
+        const saveSelectedClass = {selectedClassId: ID, addedBy: user.email, className: ClassName, instructorName: InstructorName, enrolled: StudentEnrolled, seats_Available: AvailableSeats, price: Price};
+        fetch("http://localhost:5000/selected-class",{
+            method: "POST",
+            headers:{
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(saveSelectedClass)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.insertedId){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Class added to my selected classes. Check dashboard for more.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+        }
+    }
     return (
         <div>
             <div className="hero min-h-6" style={{backgroundImage: "url('cover.jpg')"}}>
@@ -36,7 +65,7 @@ const Classes = () => {
                         <p className="text-slate-700">Price: ${item.Price}</p>
                         <div className="card-actions">
                             <Link>
-                                <button style={{background:"#562EFF", padding:"5px 30px"}} className="btn text-white">Enroll</button>
+                                <button onClick={()=> handleAddToSelectedClass(item)} style={{background:"#562EFF", padding:"5px 30px"}} className="btn text-white">Select Class</button>
                             </Link>
                         </div>
                     </div>
