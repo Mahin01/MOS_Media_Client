@@ -1,11 +1,40 @@
-
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
     const {user} = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+                    const saveClassToDb = {ImageName: data.photoURL, ClassName: data.name, 
+                        InstructorName: data.instructorName, StudentEnrolled: 0, AvailableSeats: Number(data.totalSeats), Price:Number(data.price)};
+                    fetch('http://localhost:5000/classes', {
+                        method: 'POST', 
+                        headers: {
+                            'content-type': 'application/json'
+                        }, 
+                        body: JSON.stringify(saveClassToDb)
+                    })
+                    .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                            reset();
+                    Swal.fire({
+                    title: 'Class Added Successfully.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'  
+                    }
+                    });
+                    }
+                })
+                .catch(error => console.log(error))
+            }
+
     return (
         <div className='w-full'>
             <div className="hero bg-base-200">
@@ -16,7 +45,7 @@ const AddClass = () => {
                     <h2 className="text-5xl font-bold">Add a class now!</h2>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
@@ -29,19 +58,19 @@ const AddClass = () => {
                                 <label className="label">
                                     <span className="label-text">Instructor Name</span>
                                 </label>
-                                <input type="text" placeholder={user?.displayName} {...register("instructor-name", { required: true })} value={user?.displayName}  className="input input-bordered"/>
+                                <input type="text" placeholder={user?.displayName} {...register("instructorName", { required: true })} value={user?.displayName}  className="input input-bordered"/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Total Seats</span>
                                 </label>
-                                <input type="text" placeholder="Enter Total Seats" {...register("total-seats")} name='total-seats' className="input input-bordered"/>
+                                <input type="text" placeholder="Enter Total Seats" {...register("totalSeats")} name='totalSeats' className="input input-bordered"/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Price</span>
                                 </label>
-                                <input type="text"  {...register("price", { required: true })}  placeholder="Enter Fee of Your Classes" className="input input-bordered" />
+                                <input type='text'  {...register("price", { required: true })}  placeholder="Enter Fee of Your Classes" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
