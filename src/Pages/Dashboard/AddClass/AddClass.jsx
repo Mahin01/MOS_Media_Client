@@ -9,7 +9,7 @@ const AddClass = () => {
 
     const onSubmit = data => {
                     const saveClassToDb = {ImageName: data.photoURL, ClassName: data.name, 
-                        InstructorName: data.instructorName, StudentEnrolled: 0, AvailableSeats: Number(data.totalSeats), Price:Number(data.price)};
+                        InstructorName: data.instructorName, InstructorEmail: data.instructorEmail, StudentEnrolled: 0, AvailableSeats: Number(data.totalSeats), Price:Number(data.price)};
                     fetch('http://localhost:5000/classes', {
                         method: 'POST', 
                         headers: {
@@ -59,6 +59,12 @@ const AddClass = () => {
                                     <span className="label-text">Instructor Name</span>
                                 </label>
                                 <input type="text" placeholder={user?.displayName} {...register("instructorName", { required: true })} value={user?.displayName}  className="input input-bordered"/>
+                                </div>
+                                <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Instructor Email</span>
+                                </label>
+                                <input type="email" placeholder={user?.email} {...register("instructorEmail", { required: true })} value={user?.email}  className="input input-bordered"/>
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
