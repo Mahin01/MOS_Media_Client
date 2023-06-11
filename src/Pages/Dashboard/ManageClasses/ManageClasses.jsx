@@ -12,6 +12,7 @@ const ManageClasses = () => {
     }, []);
   
     const handleDeleteClass = (id) => {
+        console.log(id);
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -19,10 +20,10 @@ const ManageClasses = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete singleClass!",
+        confirmButtonText: "Yes, delete Class!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/singleClasss/${id}`, {
+          fetch(`http://localhost:5000/classes/${id}`, {
             method: "DELETE",
           })
             .then(res => res.json())
@@ -30,7 +31,7 @@ const ManageClasses = () => {
               if(data.deletedCount > 0){
                   Swal.fire(
                       'Deleted!',
-                      'singleClass has been deleted.',
+                      'Class has been deleted.',
                       'success'
                   )
               }
