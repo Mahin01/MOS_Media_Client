@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const SelectedClass = () => {
   const { user } = useContext(AuthContext);
@@ -9,13 +10,41 @@ const SelectedClass = () => {
 
   useEffect(() => {
     fetch(url)
-      .then(res => res.json())
-      .then(data => setAllSelectedClasses(data))
-      .catch(error => console.log(error));
+      .then((res) => res.json())
+      .then((data) => setAllSelectedClasses(data))
+      .catch((error) => console.log(error));
   }, [url]);
 
+  const handleDeleteClass = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/selected-class/${id}`, {
+          method: "DELETE",
+        })
+          .then(res => res.json())
+          .then((data) => {
+            if(data.deletedCount > 0){
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        });
+      }
+    });
+  };
   return (
-    <div className='w-full px-10'>
+    <div className="w-full px-10">
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>
@@ -40,13 +69,18 @@ const SelectedClass = () => {
                 <td>{item.price}</td>
                 <td>
                   <button className="btn btn-primary mx-2">Make Payment</button>
-                  <button className="btn bg-red-600 text-white"><FaTrashAlt/></button>
+                  <button
+                    onClick={() => handleDeleteClass(item?._id)}
+                    className="btn bg-red-600 text-white"
+                  >
+                    <FaTrashAlt />
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div> 
+      </div>
     </div>
   );
 };
