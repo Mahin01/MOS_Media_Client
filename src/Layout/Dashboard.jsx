@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
-    const isAdmin = false;
+    const isAdmin = true;
     const isInstructor = false;
     return (
         <>
@@ -21,7 +21,7 @@ const Dashboard = () => {
                     <>
                         <li><Link to="/dashboard/student-home">Admin Home</Link></li>
                         <li><Link to="/dashboard/Selected-class">Manage Classes</Link></li>
-                        <li><Link to="/dashboard/enrolled-class">Manage Users</Link></li> 
+                        <li><Link to="/dashboard/manage-users">Manage Users</Link></li> 
                     </> 
                     : isInstructor ?
                     <>
