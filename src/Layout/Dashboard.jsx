@@ -21,7 +21,7 @@ const Dashboard = () => {
                     
                     { isAdmin && (
                     <>
-                        <li><Link to="/dashboard/student-home">Admin Home</Link></li>
+                        <li><Link to="/dashboard/admin-home">Admin Home</Link></li>
                         <li><Link to="/dashboard/manage-classes">Manage Classes</Link></li>
                         <li><Link to="/dashboard/manage-users">Manage Users</Link></li> 
                     </> 
