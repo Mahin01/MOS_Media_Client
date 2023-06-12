@@ -19,7 +19,7 @@ const Classes = () => {
         const {ID, ClassName, InstructorName, StudentEnrolled, AvailableSeats, Price} = item;
         if(user && user.email){
         const saveSelectedClass = {selectedClassId: ID, addedBy: user.email, className: ClassName, instructorName: InstructorName, enrolled: StudentEnrolled, seats_Available: AvailableSeats, price: Price, payment_status: false};
-        fetch("http://localhost:5000/selected-class",{
+        fetch("http://localhost:5000/student/selected-classes",{
             method: "POST",
             headers:{
                 "content-type": "application/json"
