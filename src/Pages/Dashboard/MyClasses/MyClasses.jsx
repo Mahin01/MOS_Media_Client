@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const MyClasses = () => {
     const {user} = useContext(AuthContext);
@@ -67,12 +68,12 @@ const MyClasses = () => {
                   <td> {singleClass.AvailableSeats} </td>
                   <td> ${singleClass.Price} </td>
                   <td>
-                    {/* <button className='btn text-orange-400 mr-2'><FaEdit></FaEdit></button> */}
+                    <button className='btn text-orange-400 mr-2'><FaEdit></FaEdit></button>
                     <button
                       onClick={() => handleDeleteClass(singleClass?._id)}
                       className="btn bg-red-600 text-white"
                     >
-                      {/* <FaTrashAlt /> */}
+                      <FaTrashAlt />
                     </button>
                   </td>
                 </tr>
