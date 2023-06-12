@@ -46,12 +46,28 @@ const ManageUsers = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.modifiedCount){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+      })
+  }
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Instructor Now!`,
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -83,11 +99,15 @@ const ManageUsers = () => {
                 <td> {user.phoneNumber} </td>
                 <td>
                   { user?.role === "admin" ?
-                  <p className='my-2 text-xl text-red-600'>Admin</p>
+                  <p className='my-2 text-red-600'>Admin</p>
                   :
                   <button onClick={() => handleMakeAdmin(user)} className='btn btn-sm btn-primary my-2'>Make Admin</button>
                   }
-                  <button className='btn btn-sm btn-primary'>Make Instructor</button>
+                  { user?.role === "instructor" ?
+                  <p className='my-2 text-red-600'>Instructor</p>
+                  :
+                  <button onClick={() => handleMakeInstructor(user)} className='btn btn-sm btn-primary my-2'>Make Instructor</button>
+                  }
                 </td>
                 <td>
                   <button
