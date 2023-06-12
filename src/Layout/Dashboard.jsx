@@ -19,26 +19,28 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
                     <ul className="menu px-4 py-20 w-60 h-full bg-slate-800 text-white">
                     
-                    { isAdmin  ?
+                    { isAdmin && (
                     <>
                         <li><Link to="/dashboard/student-home">Admin Home</Link></li>
                         <li><Link to="/dashboard/manage-classes">Manage Classes</Link></li>
                         <li><Link to="/dashboard/manage-users">Manage Users</Link></li> 
                     </> 
-                    : isInstructor ?
+                    )}
+                    {!isAdmin && isInstructor && (
                     <>
                         <li><Link to="/dashboard/instructor-home">Instructor Home</Link></li>
                         <li><Link to="/dashboard/add-class">Add a Class</Link></li>
                         <li><Link to="/dashboard/my-classes">My Classes</Link></li>
                     </>
-                    :
+                    )}
+                    { !isAdmin && !isInstructor && (
                     <>
                         <li><Link to="/dashboard/student-home">Student Home</Link></li>
                         <li><Link to="/dashboard/Selected-class">My Selected Class</Link></li>
                         <li><Link to="/dashboard/enrolled-class">My Enrolled Class</Link></li>
                         <li><Link to="/dashboard/enrolled-class">Payment History</Link></li>
                     </>
-                    }
+                    )}
                     </ul>
                 </div>
             </div> 
