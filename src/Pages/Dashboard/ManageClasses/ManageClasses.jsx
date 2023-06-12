@@ -41,7 +41,7 @@ const ManageClasses = () => {
     };
 
     const handleApproveClass = (id) => {
-      fetch(`http://localhost:5000/classes/admin/${id}`, {
+      fetch(`http://localhost:5000/classes/admin/approve/${id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -51,6 +51,24 @@ const ManageClasses = () => {
                     position: 'top-end',
                     icon: 'success',
                     title: "The Class Has been Approved!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+      })
+    }
+
+    const handleDenyClass = (id) => {
+      fetch(`http://localhost:5000/classes/admin/deny/${id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "The Class Has been Denied!",
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -83,13 +101,19 @@ const ManageClasses = () => {
                   <td> {singleClass.AvailableSeats} </td>
                   <td> ${singleClass.Price} </td>
                   <td>
-                    { singleClass.status === "approved" ?
+                    { singleClass.status === "approved" && (
 
-                      <p className='text-red-600'>Approved</p>
-                      :
+                      <p className='text-green-600 text-lg'>Approved</p>
+                    )}
+                    {
+                       singleClass.status === "denied" &&
+                      <p className='text-red-600 text-lg'>Denied</p>
+                    }
+                    {
+                      singleClass.status !== "approved" && singleClass.status !== "denied" &&
                       <div>
                         <button onClick={() => handleApproveClass(singleClass?._id)} className='btn my-2 bg-green-600 text-white'>Approve</button>
-                        <button className='btn text-white bg-red-600'>Deny</button>
+                        <button onClick={() => handleDenyClass(singleClass?._id)} className='btn text-white bg-red-600'>Deny</button>
                       </div>
                     }
                     </td>
