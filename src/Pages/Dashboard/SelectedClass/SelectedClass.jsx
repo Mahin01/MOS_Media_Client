@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const SelectedClass = () => {
   const { user } = useContext(AuthContext);
   const [allSelectedClasses, setAllSelectedClasses] = useState([]);
-  const url = `http://localhost:5000/selected-classes?${user?.email}`;
+  const url = `http://localhost:5000/selected-classes/${user?.email}`;
 
   useEffect(() => {
     fetch(url)
@@ -27,7 +27,7 @@ const SelectedClass = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selected-class/${id}`, {
+        fetch(`http://localhost:5000/student/selected-class/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())
