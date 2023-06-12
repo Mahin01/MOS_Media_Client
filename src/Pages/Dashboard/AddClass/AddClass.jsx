@@ -9,7 +9,7 @@ const AddClass = () => {
 
     const onSubmit = data => {
                     const saveClassToDb = {ImageName: data.photoURL, ClassName: data.name, 
-                        InstructorName: data.instructorName, InstructorEmail: data.instructorEmail, StudentEnrolled: 0, AvailableSeats: Number(data.totalSeats), Price:Number(data.price)};
+                        InstructorName: data.instructorName, InstructorEmail: data.instructorEmail, StudentEnrolled: 0, AvailableSeats: Number(data.totalSeats), Price:Number(data.price), status: "pending"};
                     fetch('http://localhost:5000/classes', {
                         method: 'POST', 
                         headers: {

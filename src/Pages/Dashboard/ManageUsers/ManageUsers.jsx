@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaTrashAlt,} from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
