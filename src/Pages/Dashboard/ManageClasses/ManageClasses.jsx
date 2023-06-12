@@ -39,6 +39,24 @@ const ManageClasses = () => {
         }
       });
     };
+
+    const handleApproveClass = (id) => {
+      fetch(`http://localhost:5000/classes/admin/${id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "The Class Has been Approved!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+      })
+    }
     return (
       <div className="w-full px-10">
         <div className="overflow-x-auto">
@@ -51,6 +69,7 @@ const ManageClasses = () => {
                 <th>Total Enrolled</th>
                 <th>Available Seats</th>
                 <th>Price</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -64,7 +83,17 @@ const ManageClasses = () => {
                   <td> {singleClass.AvailableSeats} </td>
                   <td> ${singleClass.Price} </td>
                   <td>
-                    <button className='btn text-orange-400 mr-2'><FaEdit></FaEdit></button>
+                    { singleClass.status === "approved" ?
+
+                      <p className='text-red-600'>Approved</p>
+                      :
+                      <div>
+                        <button onClick={() => handleApproveClass(singleClass?._id)} className='btn my-2 bg-green-600 text-white'>Approve</button>
+                        <button className='btn text-white bg-red-600'>Deny</button>
+                      </div>
+                    }
+                    </td>
+                    <td>
                     <button
                       onClick={() => handleDeleteClass(singleClass?._id)}
                       className="btn bg-red-600 text-white"
