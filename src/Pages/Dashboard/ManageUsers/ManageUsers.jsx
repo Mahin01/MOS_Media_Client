@@ -39,6 +39,25 @@ const ManageUsers = () => {
       }
     });
   };
+
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+      })
+  }
   return (
     <div className="w-full px-10">
       <div className="overflow-x-auto">
@@ -62,7 +81,10 @@ const ManageUsers = () => {
                 <td>{user.email}</td>
                 <td> {user.gender} </td>
                 <td> {user.phoneNumber} </td>
-                <td><button className='btn text-2xl text-orange-400'><FaUserShield></FaUserShield></button></td>
+                <td>
+                  <button onClick={() => handleMakeAdmin(user)} className='btn btn-sm btn-primary my-2'>Make Admin</button>
+                  <button className='btn btn-sm btn-primary'>Make Instructor</button>
+                </td>
                 <td>
                   <button
                     onClick={() => handleDeleteUser(user?._id)}
