@@ -82,7 +82,11 @@ const ManageUsers = () => {
                 <td> {user.gender} </td>
                 <td> {user.phoneNumber} </td>
                 <td>
+                  { user?.role === "admin" ?
+                  <p className='my-2 text-xl text-red-600'>Admin</p>
+                  :
                   <button onClick={() => handleMakeAdmin(user)} className='btn btn-sm btn-primary my-2'>Make Admin</button>
+                  }
                   <button className='btn btn-sm btn-primary'>Make Instructor</button>
                 </td>
                 <td>
