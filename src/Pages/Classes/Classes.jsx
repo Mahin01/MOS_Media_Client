@@ -66,9 +66,15 @@ const Classes = () => {
                         <p className="text-slate-700"><small>{item.StudentEnrolled} Enrolled</small></p>
                         <p className="text-slate-700">Price: ${item.Price}</p>
                         <div className="card-actions">
+                        { item.AvailableSeats === 0 ?
+                            <Link>
+                            <button style={{ padding:"5px 30px"}} className="btn text-white bg-red-600" disabled={true}>Select Class</button>
+                            </Link>
+                            :
                             <Link>
                                 <button onClick={()=> handleAddToSelectedClass(item)} style={{background:"#562EFF", padding:"5px 30px"}} className="btn text-white">Select Class</button>
                             </Link>
+                        }
                         </div>
                     </div>
             </div>
