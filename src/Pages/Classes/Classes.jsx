@@ -8,12 +8,14 @@ const Classes = () => {
     const {user} = useContext(AuthContext);
     const [allClasses, setAllClasses] = useState([]);
     useEffect(() => {
-        fetch('fakeData/classes.json')
+        fetch('http://localhost:5000/classes')
         .then(res => res.json())
         .then(data => {setAllClasses(data);
         })    
         .catch(error => console.error(error))
     }, []);
+
+    const filteredData = allClasses.filter(item => item.status === "approved");
 
     const handleAddToSelectedClass = item => {
         const {ID, ClassName, InstructorName, StudentEnrolled, AvailableSeats, Price} = item;
@@ -53,7 +55,7 @@ const Classes = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10 my-10">
-            {allClasses.map((item) => (
+            {filteredData.map((item) => (
                 <div key={item.ID} className="card w-80 bg-base-100 shadow-xl">
                     <figure className="pt-10">
                         <img src={item.ImageName} alt="Class Cover" className="rounded-xl" />

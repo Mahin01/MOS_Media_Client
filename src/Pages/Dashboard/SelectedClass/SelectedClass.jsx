@@ -2,10 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
+import Payment from "../Payment/Payment";
 
 const SelectedClass = () => {
   const { user } = useContext(AuthContext);
   const [allSelectedClasses, setAllSelectedClasses] = useState([]);
+  const navigate = useNavigate();
   const url = `http://localhost:5000/student/selected-classes?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
@@ -67,7 +70,9 @@ const SelectedClass = () => {
                 <td> {item.seats_available} </td>
                 <td>{item.price}</td>
                 <td>
-                  <button className="btn btn-primary mx-2">Make Payment</button>
+                  <Link to={`/dashboard/payment/${item?._id}`}>
+                    <button className="btn btn-primary mx-2">Make Payment</button>
+                  </Link>
                   <button
                     onClick={() => handleDeleteClass(item?._id)}
                     className="btn bg-red-600 text-white"

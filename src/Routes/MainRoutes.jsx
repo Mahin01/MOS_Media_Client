@@ -17,6 +17,7 @@ import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
  export const router = createBrowserRouter([
     {
@@ -61,6 +62,11 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
         {
           path:"selected-class",
           element: <SelectedClass></SelectedClass>
+        },
+        {
+          path: "payment/:classId",
+          element: <Payment></Payment>,
+          loader: async ({params}) => await fetch(`http://localhost:5000/student/selected-class/${params.classId}`)
         },
         {
           path:"enrolled-class",
