@@ -2,10 +2,11 @@ import { CardElement } from '@stripe/react-stripe-js';
 import React from 'react';
 
 const CheckOutForm = () => {
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    }
     return (
-        
-    <form>
+    <form onSubmit={handleSubmit}>
       <CardElement
         options={{
           style: {
