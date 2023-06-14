@@ -48,6 +48,7 @@ const SelectedClass = () => {
   };
   return (
     <div className="w-full px-10">
+      <h2 className="text-3xl my-5 font-bold">My Selected Classes</h2>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>
