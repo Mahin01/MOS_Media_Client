@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 
 const CheckoutForm = ({itemData}) => {
-  const {price} = itemData;
+  const {_id, ID, price, className, instructorName, payment_status} = itemData;
   const stripe = useStripe();
   const elements = useElements();
   const {user} = useAuth();
@@ -73,7 +73,25 @@ const CheckoutForm = ({itemData}) => {
       setProcessing(false)
       if (paymentIntent.status === 'succeeded') {
           setTransactionId(paymentIntent.id);
+          const payment = {
+            email: user?.email,
+            transactionId: paymentIntent.id,
+            price,
+            date: new Date(),
+            selected_class: _id,
+            class_item: ID,
+            status: 'pending',
+            instructor : instructorName,
+            className: className,
         }
+        axiosSecure.post('/payments', payment)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.result.insertedId) {
+                    // display confirm
+                }
+            })
+    }
   }
     return (
     <>
