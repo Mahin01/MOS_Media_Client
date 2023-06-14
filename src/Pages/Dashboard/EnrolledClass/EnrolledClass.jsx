@@ -1,19 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../../../Providers/AuthProvider';
-import { FaTrashAlt } from 'react-icons/fa';
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
-const EnrolledClass = () => {
-    const { user } = useContext(AuthContext);
+const SelectedClass = () => {
+  const { user } = useContext(AuthContext);
   const [allSelectedClasses, setAllSelectedClasses] = useState([]);
-  const url = `http://localhost:5000/selected-classes?${user?.email}`;
-
+  const url = `http://localhost:5000/student/selected-classes?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setAllSelectedClasses(data))
       .catch((error) => console.log(error));
   }, [url]);
+
+  const filteredSelectedClasses = allSelectedClasses.filter(selectedClass => selectedClass.payment_status === true);
 
   const handleDeleteClass = (id) => {
     console.log(id);
@@ -43,7 +45,6 @@ const EnrolledClass = () => {
       }
     });
   };
-  const filteredSelectedClasses = allSelectedClasses.filter(item => item.payment_status === true);
   return (
     <div className="w-full px-10">
       <div className="overflow-x-auto">
@@ -53,8 +54,6 @@ const EnrolledClass = () => {
               <th>#</th>
               <th>Class Name</th>
               <th>Instructor Name</th>
-              <th>Student Enrolled</th>
-              <th>Available Seats</th>
               <th>Price</th>
             </tr>
           </thead>
@@ -64,9 +63,7 @@ const EnrolledClass = () => {
                 <th>{index + 1}</th>
                 <td>{item.className}</td>
                 <td>{item.instructorName}</td>
-                <td> {item.enrolled} </td>
-                <td> {item.seats_Available} </td>
-                <td>{item.price}</td>
+                <td>${item.price}</td>
               </tr>
             ))}
           </tbody>
@@ -76,4 +73,4 @@ const EnrolledClass = () => {
   );
 };
 
-export default EnrolledClass;
+export default SelectedClass;
