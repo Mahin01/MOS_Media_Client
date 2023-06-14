@@ -8,7 +8,6 @@ import Payment from "../Payment/Payment";
 const SelectedClass = () => {
   const { user } = useContext(AuthContext);
   const [allSelectedClasses, setAllSelectedClasses] = useState([]);
-  const navigate = useNavigate();
   const url = `http://localhost:5000/student/selected-classes?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
@@ -16,6 +15,8 @@ const SelectedClass = () => {
       .then((data) => setAllSelectedClasses(data))
       .catch((error) => console.log(error));
   }, [url]);
+
+  const filteredSelectedClasses = allSelectedClasses.filter(selectedClass => selectedClass.payment_status === false);
 
   const handleDeleteClass = (id) => {
     console.log(id);
@@ -61,7 +62,7 @@ const SelectedClass = () => {
             </tr>
           </thead>
           <tbody>
-            {allSelectedClasses.map((item, index) => (
+            {filteredSelectedClasses.map((item, index) => (
               <tr key={item._id}>
                 <th>{index + 1}</th>
                 <td>{item.className}</td>
