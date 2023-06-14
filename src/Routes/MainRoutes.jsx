@@ -19,6 +19,7 @@ import InstructorRoute from "./InstructorRoute";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
 
  export const router = createBrowserRouter([
     {
@@ -67,7 +68,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
         {
           path: "payment/:classId",
           element: <Payment></Payment>,
-          loader: async ({params}) => await fetch(`http://localhost:5000/student/selected-class/${params.classId}`)
+          loader: async ({params}) => await fetch(`https://mos-media-server.vercel.app/student/selected-class/${params.classId}`)
         },
         {
           path:"enrolled-class",
@@ -84,6 +85,10 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
         {
           path:"manage-classes",
           element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
+        },
+        {
+          path: "instructor-home",
+          element: <InstructorRoute><InstructorHome></InstructorHome></InstructorRoute>
         },
         {
           path:"add-class",

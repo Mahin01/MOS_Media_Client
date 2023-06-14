@@ -10,7 +10,7 @@ const Classes = () => {
   const [disabledClassIds, setDisabledClassIds] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://mos-media-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => {
         setAllClasses(data);

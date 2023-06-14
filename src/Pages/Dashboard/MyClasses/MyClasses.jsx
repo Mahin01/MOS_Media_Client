@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 const MyClasses = () => {
     const {user} = useAuth();
     const [allMyClasses, setAllMyClasses] = useState([]);
-    const url = `http://localhost:5000/instructor/myClasses/${user?.email}`;
+    const url = `https://mos-media-server.vercel.app/instructor/myClasses/${user?.email}`;
     useEffect(() => {
       fetch(url)
         .then((res) => res.json())

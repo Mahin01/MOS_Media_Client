@@ -5,7 +5,7 @@ const PaymentHistory = () => {
     const {user} = useAuth();
     const [paymentHistory, setPaymentHistory] = useState([]);
     useEffect(() => {
-      fetch("http://localhost:5000/payment-history")
+      fetch("https://mos-media-server.vercel.app/payment-history")
         .then((res) => res.json())
         .then((data) => setPaymentHistory(data))
         .catch((error) => console.log(error));

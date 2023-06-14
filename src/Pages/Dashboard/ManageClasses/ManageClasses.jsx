@@ -41,7 +41,7 @@ const ManageClasses = () => {
     };
 
     const handleApproveClass = (id) => {
-      fetch(`http://localhost:5000/classes/admin/approve/${id}`, {
+      fetch(`https://mos-media-server.vercel.app/classes/admin/approve/${id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
