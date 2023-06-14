@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import useAuth from '../../../hooks/useAuth';
 
 const MyClasses = () => {
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
     const [allMyClasses, setAllMyClasses] = useState([]);
-    const url = `http://localhost:5000/classes?email=${user?.email}`;
+    const url = `http://localhost:5000/instructor/myClasses/${user?.email}`;
     useEffect(() => {
       fetch(url)
         .then((res) => res.json())
         .then((data) => setAllMyClasses(data))
         .catch((error) => console.log(error));
     }, [url]);
-    console.log(allMyClasses);
     const handleDeleteClass = (id) => {
       Swal.fire({
         title: "Are you sure?",
@@ -43,6 +43,7 @@ const MyClasses = () => {
     };
     return (
       <div className="w-full px-10">
+        <h2 className="text-3xl my-5 font-bold">My Classes</h2>
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
