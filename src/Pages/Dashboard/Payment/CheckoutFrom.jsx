@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import "./CheckoutForm.css";
 
 const CheckoutForm = ({itemData}) => {
   const {_id, ID, price, className, instructorName, payment_status} = itemData;
@@ -95,7 +96,8 @@ const CheckoutForm = ({itemData}) => {
   }
     return (
     <>
-      <form className='block w-full' onSubmit={handleSubmit}>
+      <h2 className="text-3xl">Make Payment</h2>
+      <form className='w-full' onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {
