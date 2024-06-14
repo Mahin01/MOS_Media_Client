@@ -3,11 +3,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Rating } from "@smastrom/react-rating";
+import '@smastrom/react-rating/style.css';
+import './Classes.css';
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [allClasses, setAllClasses] = useState([]);
   const [disabledClassIds, setDisabledClassIds] = useState([]);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     fetch("https://mos-media-server.vercel.app/classes")
@@ -33,7 +37,7 @@ const Classes = () => {
         price: Price,
         payment_status: false,
       };
-      fetch("http://localhost:5000/student/selected-classes", {
+      fetch("http://localhost:5173/student/selected-classes", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -75,17 +79,21 @@ const Classes = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10 my-10">
         {filteredData.map((item) => (
-          <div key={item.ID} className="card w-80 bg-base-100 shadow-xl">
-            <figure className="pt-10">
-              <img src={item.ImageName} alt="Class Cover" className="rounded-xl" />
+          <div key={item.ID} className="card-compact w-80 mb-5">
+            <figure className="mb-3">
+              <img src={item.ImageName} alt="Class Cover" className="rounded-xl h-40 w-full" />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title text-slate-800">{item.ClassName}</h2>
-              <p className="text-xl text-slate-600">By {item.InstructorName}</p>
-              <p className="text-slate-700">
-                <small>{item.StudentEnrolled} Enrolled</small>
-              </p>
-              <p className="text-slate-700">Price: ${item.Price}</p>
+            <div>
+              <h6 className="card-title text-slate-800">{item.ClassName}</h6>
+              <small><p className="text-xsm text-slate-600"> 
+               <Link>{item.InstructorName}</Link></p></small>
+              <div className="rating">
+                <Rating className="star" style={{ maxWidth: 120 }} value={rating} onChange={setRating} />
+                <p className="text-slate-700">
+                  <small> ({item.StudentEnrolled} Enrolled)</small>
+                </p>
+              </div>
+              <p className="text-slate-700 font-bold">${item.Price}</p>
               <div className="card-actions">
                 {item.AvailableSeats === 0 ? (
                   <Link>

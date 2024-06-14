@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "../Login/Login.css";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
-
     const {userSignIn, googleSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -50,43 +50,50 @@ const Login = () => {
         })
     }
     return (
-        <div>
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col
-                lg:flex-row-reverse lg:w-9/12 justify-content-center">
-                    <div className="text-center lg:text-left">
-                    <h2 className='text-2xl font-bold'>It's so good to have you back!</h2>
-                    <h2 className="text-5xl font-bold">Login now!</h2>
-                    <p className="pt-6 pb-3">Don't have an account yet? <Link to="/register" className='link register-link'>Register Here</Link></p>
-                    <p>Join us today & Learn the Art of photography on the go!</p>
+        <>
+            <Helmet>
+                <title>MOS Media | Login</title>
+            </Helmet>
+            <div class="hero min-h-screen bg-base-200">
+                <div class="hero-content flex-col lg:flex-row-reverse lg:w-9/12 justify-content-center">
+                    <div class="text-center lg:text-left">
+                        <h2 class="text-2xl font-bold">It's so good to have you back!</h2>
+                        <h2 class="text-5xl font-bold">Login now!</h2>
+                        <p class="pt-6 pb-3">Don't have an account yet?
+                            <a class="link register-link" href="/register">Register Here</a>
+                        </p>
+                        <p>Join us today &amp; Learn the Art of photography on the go!</p>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
-                        <form onSubmit={handleUserSignIn}>
-                                <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="email" placeholder="Enter your email" name="email" className="input input-bordered" required/>
-                                </div>
-                                <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="password" placeholder="Enter your password" name="pwd" className="input input-bordered" required/>
-                                </div>
-                                <div className="form-control mt-6">
-                                <button className="btn text-white login-btn">Login</button>
-                                </div>
-                        </form>
-                                <div className="form-control mt-4">
-                                    <button onClick={handleGoogleSignIn} className="btn google-login-btn hover">Login With Google</button>
+                        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                            <div class="card-body">
+                                <form onSubmit={handleUserSignIn}>
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Email</span>
+                                        </label>
+                                        <input type="email" placeholder="Enter your email" name="email" class="input input-bordered" required />
+                                    </div>
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Password</span>
+                                        </label>      
+                                        <input type="password" placeholder="Enter your password" name="pwd" class="input input-bordered" required />
+                                        <label className="label">
+                                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                        </label>
+                                    </div>
+                                    <div class="form-control mt-4">
+                                        <button type="submit" class="btn text-white login-btn">Login</button>
+                                    </div>
+                                </form>
+                                    <div class="form-control">
+                                        <button class="btn google-login-btn hover">Login With Google</button>
+                                    </div>
                                 </div>
                             </div>
-                     </div>
-                </div>
-            </div>
-        </div>
+                        </div>
+                    </div>
+            </>
     );
 };
 

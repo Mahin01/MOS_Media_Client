@@ -11,6 +11,7 @@ const Instructor = () => {
         .catch(error => console.error(error))
     }, []);
     const filteredData = instructors.filter(item => item.role === "instructor");
+    console.log(filteredData);
     return (
         <div>
             <div className="hero min-h-6" style={{backgroundImage: "url('cover.jpg')"}}>
@@ -25,13 +26,13 @@ const Instructor = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10 my-10">
             {filteredData.map((item) => (
                 <div key={item.ID} className="card w-80 bg-base-100 shadow-xl">
-                    <figure className="pt-10">
-                        <img src={item.image} alt="Class Cover" className="rounded-xl" />
+                    <figure>
+                        <img src={item.photoUrl} alt="Class Cover" className="rounded-xl h-52 w-full" />
                     </figure>
                     <div className="card-body">
                         <h2 className="card-title text-slate-800">{item.name}</h2>
                         <p className="text-xl text-slate-600">Total Class: {item.classes_taken}</p>
-                        <p className="text-slate-700"><small>Total {item.total_students} Enrolled</small></p>
+                        <p className="text-slate-700"><small>Total {item.total_students} Enrolled :</small></p>
                         <div className="card-actions">
                             <Link>
                                 <button style={{background:"#562EFF"}} className="btn text-white">Explore Class</button>
