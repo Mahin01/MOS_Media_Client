@@ -5,7 +5,7 @@ const PopularClasses = () => {
     const [classesData, setClassesData] = useState();
 
     useEffect(() => {
-        fetch('fakeData/classes.json')
+        fetch("https://mos-media-server.vercel.app/classes")
         .then(res => res.json())
         .then(data => {setClassesData(data);
         })    
