@@ -32,6 +32,7 @@ const NavMenu = () => {
                        <NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/instructors"}>Instructors</NavLink>
                     </li>
                     <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/classes"}>Classes</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/contact"}>Contact</NavLink></li>
                     </ul>
                 </div>
 

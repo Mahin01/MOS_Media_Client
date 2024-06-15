@@ -20,6 +20,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
+import Contact from "../Pages/Contact/Contact";
 
  export const router = createBrowserRouter([
     {
@@ -38,7 +39,10 @@ import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
             path:"/classes",
             element:<Classes></Classes>
           },
-
+          {
+            path:"/contact",
+            element:<Contact></Contact>
+          },
           {
             path: "/login",
             element: <Login></Login>
