@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ClassesCard = ({data}) => {
-    console.log(data);
     const [rating, setRating] = useState(0);
     const [disabledClassIds, setDisabledClassIds] = useState([]);
     if (!data || !Array.isArray(data) || data.length === 0) {
