@@ -15,7 +15,7 @@ const PopularInstructors = () => {
     
 
     // Get the top 3 Instructors with the highest number of students
-    const topInstructors = sortedInstructors.slice(0, 3);    
+    const topInstructors = sortedInstructors.slice(0, 6);    
     return (
         <div className='my-10'>
             <h1 className='text-4xl font-bold text-center my-10'>Popular Instructors</h1>
