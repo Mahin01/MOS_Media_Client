@@ -54,46 +54,45 @@ const Login = () => {
             <Helmet>
                 <title>MOS Media | Login</title>
             </Helmet>
-            <div class="hero min-h-screen bg-base-200">
-                <div class="hero-content flex-col lg:flex-row-reverse lg:w-9/12 justify-content-center">
-                    <div class="text-center lg:text-left">
-                        <h2 class="text-2xl font-bold">It's so good to have you back!</h2>
-                        <h2 class="text-5xl font-bold">Login now!</h2>
-                        <p class="pt-6 pb-3">Don't have an account yet?
-                            <a class="link register-link" href="/register">Register Here</a>
-                        </p>
-                        <p>Join us today &amp; Learn the Art of photography on the go!</p>
+            
+            <div className="hero bg-base-200 min-h-screen">
+                <div className="hero-content md:w-9/12 flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                    <h2 class="text-2xl font-bold">It's so good to have you back!</h2>
+                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <p class="pt-6 pb-3">Don't have an account yet? <a class="link register-link" href="/register">Register Here</a></p>
+                    <p>Join us today &amp; Learn the Art of photography on the go!</p>
                     </div>
-                        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                            <div class="card-body">
-                                <form onSubmit={handleUserSignIn}>
-                                    <div class="form-control">
-                                        <label class="label">
-                                            <span class="label-text">Email</span>
-                                        </label>
-                                        <input type="email" placeholder="Enter your email" name="email" class="input input-bordered" required />
-                                    </div>
-                                    <div class="form-control">
-                                        <label class="label">
-                                            <span class="label-text">Password</span>
-                                        </label>      
-                                        <input type="password" placeholder="Enter your password" name="pwd" class="input input-bordered" required />
-                                        <label className="label">
-                                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                        </label>
-                                    </div>
-                                    <div class="form-control mt-4">
-                                        <button type="submit" class="btn text-white login-btn">Login</button>
-                                    </div>
-                                </form>
-                                    <div class="form-control">
-                                        <button class="btn google-login-btn hover">Login With Google</button>
-                                    </div>
-                                </div>
+                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                    <div className="card-body">
+                        <form onSubmit={handleUserSignIn} className="w-full">
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" placeholder="email" className="input input-bordered" required />
                             </div>
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <label className="label">
+                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
+                            </div>
+                            <div className="form-control mt-6">
+                            <button type="submit" className="btn btn-primary login-btn">Login</button>
+                            </div>
+                        </form>
+                        <div class="form-control mt-4">
+                            <button class="btn google-login-btn hover">Login With Google</button>
                         </div>
                     </div>
-            </>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 

@@ -1,17 +1,8 @@
 .slider-img{
     height: 500px;
 }
-  .carousel{
-    position: relative;
-  }
-  .carousel::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom right, #4e5064, #c2c2c2);
-    opacity: 0.6; 
+
+.prev-btn, .next-btn{
+background-color: transparent !important;
+box-shadow: none !important;
 }
-  
