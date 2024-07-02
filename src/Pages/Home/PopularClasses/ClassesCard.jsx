@@ -20,9 +20,9 @@ const ClassesCard = ({data}) => {
     const isButtonDisabledForItem = (ID) => disabledClassIds.includes(ID);
     
     return (
-        <div className="classes-card grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-4 px-10 my-10">
+        <div className="classes-card grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-4">
         {topClasses.map((item) => (
-          <div key={item.ID} className="card-compact mb-5">
+          <div key={item.ID} className="card-compact">
             <figure>
               <img src={item.ImageName} alt="Class Cover" className="h-32 w-full" />
             </figure>
@@ -31,12 +31,12 @@ const ClassesCard = ({data}) => {
               <small><p className="text-xsm text-gray-400"> 
                <Link>{item.InstructorName}</Link></p></small>
               <div className="rating">
-                <Rating className="star" style={{ maxWidth: 120 }} value={rating} onChange={setRating} />
-                <p className="text-gray-400">
-                  <small> ({item.StudentEnrolled} Enrolled)</small>
+                <Rating className="star" style={{ maxWidth: 80 }} value={rating} onChange={setRating} />
+                <p className="text-gray-400 review">
+                  ({item.StudentEnrolled} Enrolled)
                 </p>
               </div>
-              <p className="text-slate-700 font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
+              <p className="text-black font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
             </div>
           </div>
         ))}

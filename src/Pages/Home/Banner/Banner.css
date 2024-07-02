@@ -2,7 +2,16 @@
     height: 500px;
 }
 
+.carousel-pointer{
+    border-radius: 100%;
+}
+
+.carousel-pointer:hover{
+    background-color: transparent;
+}
+
+
 .prev-btn, .next-btn{
-background-color: transparent !important;
-box-shadow: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }

@@ -14,7 +14,7 @@ const PopularClasses = () => {
 
     return (
         <div>
-            <h1 className='text-4xl font-bold my-10 text-center'>Popular Classes</h1>
+            <h1 className='text-3xl font-bold my-5'>Popular classes</h1>
             {
                 <ClassesCard data={classesData}></ClassesCard>
             }

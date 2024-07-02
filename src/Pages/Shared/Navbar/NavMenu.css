@@ -8,6 +8,7 @@
     background-color: #562EFF;
     color: white;
     padding: 5px 30px;
+    text-transform: capitalize;
 }
 
 .dropdown{
