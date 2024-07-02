@@ -23,22 +23,22 @@ const ClassesCard = ({data}) => {
         <div className="classes-card grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-4">
         {topClasses.map((item) => (
           <div key={item.ID} className="card-compact">
-            <figure>
-              <img src={item.ImageName} alt="Class Cover" className="h-32 w-full" />
-            </figure>
-            <div>
-              <p className="text-lg font-bold text-slate-800">{item.ClassName}</p>
-              <small><p className="text-xsm text-gray-400"> 
-               <Link>{item.InstructorName}</Link></p></small>
-              <div className="rating">
-                <Rating className="star" style={{ maxWidth: 80 }} value={rating} onChange={setRating} />
-                <p className="text-gray-400 review">
-                  ({item.StudentEnrolled} Enrolled)
-                </p>
-              </div>
-              <p className="text-black font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
+          <figure>
+            <img src={item.ImageName} alt="Class Cover" className="h-32 w-full" />
+          </figure>
+          <div>
+            <p className="text-lg font-bold text-slate-800">{item.ClassName}</p>
+            <small><p className="text-xsm text-gray-400"> 
+             <Link>{item.InstructorName}</Link></p></small>
+            <div className="rating">
+              <Rating className="star" style={{ maxWidth: 80 }} value={rating} onChange={setRating} />
+              <p className="text-gray-400 review">
+                ({item.StudentEnrolled} Enrolled)
+              </p>
             </div>
+            <p className="text-black font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
           </div>
+        </div>
         ))}
       </div>
     );

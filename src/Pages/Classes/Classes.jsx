@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css';
 import './Classes.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
@@ -77,45 +79,25 @@ const Classes = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-10 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-3 my-10">
         {filteredData.map((item) => (
-          <div key={item.ID} className="card-compact w-80 mb-5">
-            <figure className="mb-3">
-              <img src={item.ImageName} alt="Class Cover" className="rounded-xl h-40 w-full" />
-            </figure>
-            <div>
-              <h6 className="card-title text-slate-800">{item.ClassName}</h6>
-              <small><p className="text-xsm text-slate-600"> 
-               <Link>{item.InstructorName}</Link></p></small>
-              <div className="rating">
-                <Rating className="star" style={{ maxWidth: 120 }} value={rating} onChange={setRating} />
-                <p className="text-slate-700">
-                  <small> ({item.StudentEnrolled} Enrolled)</small>
-                </p>
-              </div>
-              <p className="text-slate-700 font-bold">${item.Price}</p>
-              <div className="card-actions">
-                {item.AvailableSeats === 0 ? (
-                  <Link>
-                    <button style={{ padding: "5px 30px" }} className="btn text-white bg-red-600" disabled={true}>
-                      Select Class
-                    </button>
-                  </Link>
-                ) : (
-                  <Link>
-                    <button
-                      onClick={() => handleAddToSelectedClass(item)}
-                      style={{ background: "#562EFF", padding: "5px 30px" }}
-                      className={isButtonDisabledForItem(item.ID) ? "btn text-white bg-red-600" : "btn text-white"}
-                      disabled={isButtonDisabledForItem(item.ID)}
-                    >
-                      Select Class
-                    </button>
-                  </Link>
-                )}
-              </div>
+         <div key={item.ID} className="card-compact">
+          <figure>
+            <img src={item.ImageName} alt="Class Cover" className="h-32 w-full" />
+          </figure>
+          <div>
+            <p className="text-lg font-bold text-slate-800">{item.ClassName}</p>
+            <small><p className="text-xsm text-gray-400"> 
+              <Link>{item.InstructorName}</Link></p></small>
+            <div className="rating">
+              <Rating className="star" style={{ maxWidth: 80 }} value={rating} onChange={setRating} />
+              <p className="text-gray-400 review">
+                ({item.StudentEnrolled} Enrolled)
+              </p>
             </div>
+            <p className="text-black font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
           </div>
+        </div>
         ))}
       </div>
     </div>

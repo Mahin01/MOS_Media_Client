@@ -46,15 +46,15 @@ const Register = () => {
         <>
            <div className="hero bg-base-200">
                 <div className="hero-content flex-col
-                lg:flex-row-reverse lg:w-10/12 justify-center">
+                lg:flex-row-reverse lg:w-9/12 justify-center">
                     <div className="text-center lg:text-left content-start">
                     <h2 className='text-2xl font-bold'>Welcome to <span className='brand-text'>MOS Media</span></h2>
                     <h2 className="text-5xl font-bold">Register now!</h2>
                     <p className="pt-6 pb-3">Already have an account? <a className='link register-link'>Login Here</a></p>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
-                            <div className="card-body">
                                 <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -118,11 +118,11 @@ const Register = () => {
                                 </label>
                                 <input type="text" placeholder="Enter your Photo URL" {...register("photoURL", { required: true })}  name='photoURL' className="input input-bordered"/>
                                 </div>
-                                <div className="form-control mt-6">
-                                <input type='submit' className="btn text-white login-btn" />
+                                <div className="form-control">
+                                    <input type='submit' className="btn text-white login-btn" />
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div> 
