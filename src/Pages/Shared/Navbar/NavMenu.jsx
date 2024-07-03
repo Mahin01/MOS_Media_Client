@@ -26,16 +26,23 @@ const NavMenu = () => {
                         <img className="brand-logo" src="logo.png" />
                     </a>
                         <p className="ps-2 normal-case text-xl font-bold">Mos Media</p>
+                    <ul className="menu menu-horizontal px-2 text-gray-400">
+                        <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/classes"}>All Courses </NavLink></li>
+                    </ul>
                 </div>
                 <div className="navbar-center lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/"}>Home</NavLink></li>
-                        <li>
-                        <NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/instructors"}>Instructors</NavLink>
-                        </li>
-                        <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/classes"}>Classes</NavLink></li>
-                        <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/contact"}>Contact</NavLink></li>
-                    </ul>
+                    <form className="m-0 p-0">   
+                        <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div className="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                </svg>
+                            </div>
+                            <input type="search" id="default-search" className="block max-w-full mt-5 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Courses" required />
+                            <button type="submit" className="text-white absolute end-2 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        </div>
+                    </form>
                 </div>
 
                 { user ?
@@ -64,11 +71,16 @@ const NavMenu = () => {
                     </div>
                     :
                     <div className="navbar-end">
-                    <ul className="menu menu-sm dropdown-content">
-                        <li className="menu menu-sm dropdown-content">
-                            <button className="login-btn btn-sm"><NavLink to={"/login"}>Login</NavLink></button>
-                        </li>
-                    </ul>
+                        <ul className="menu menu-sm dropdown-content">
+                            <li className="menu menu-sm dropdown-content">
+                                <button className="login-btn btn-sm"><NavLink to={"/login"}>Log in</NavLink></button>
+                            </li>
+                        </ul>
+                        <ul className="menu menu-sm">
+                            <li className="menu menu-sm">
+                                <button className="signup-btn btn-sm"><NavLink to={"/register"}>Sign up</NavLink></button>
+                            </li>
+                        </ul>
                     </div>
                     }
                     </div>

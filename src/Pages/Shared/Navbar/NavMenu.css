@@ -8,7 +8,14 @@
     background-color: #562EFF;
     color: white;
     padding: 5px 30px;
-    text-transform: capitalize;
+}
+
+.signup-btn{
+    background-color: transparent;
+    color: black;
+    padding: 5px 30px;
+    border-radius: 0%;
+    border: 1px solid #000;
 }
 
 .dropdown{
