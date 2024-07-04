@@ -71,8 +71,8 @@ const NavMenu = () => {
                     </div>
                     :
                     <div className="navbar-end">
-                        <ul className="menu menu-sm dropdown-content">
-                            <li className="menu menu-sm dropdown-content">
+                        <ul className="menu menu-sm">
+                            <li className="menu menu-sm">
                                 <button className="login-btn btn-sm"><NavLink to={"/login"}>Log in</NavLink></button>
                             </li>
                         </ul>

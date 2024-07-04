@@ -14,15 +14,13 @@ const ClassesCard = ({data}) => {
     const sortedClasses = data.sort((a, b) => b.StudentEnrolled - a.StudentEnrolled);
 
     // Get the top 6 classes with the highest number of students
-    const topClasses = sortedClasses.slice(0, 6);    
-    console.log(topClasses);
-
-    const isButtonDisabledForItem = (ID) => disabledClassIds.includes(ID);
+    const topClasses = sortedClasses.slice(0, 10);    
     
     return (
-        <div className="classes-card grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-4">
+      <div className="classes-card grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-4">
         {topClasses.map((item) => (
           <div key={item.ID} className="card-compact">
+          <a href="/">
           <figure>
             <img src={item.ImageName} alt="Class Cover" className="h-32 w-full" />
           </figure>
@@ -38,6 +36,7 @@ const ClassesCard = ({data}) => {
             </div>
             <p className="text-black font-bold"><FontAwesomeIcon icon={faDollarSign} />{item.Price}</p>
           </div>
+          </a>
         </div>
         ))}
       </div>

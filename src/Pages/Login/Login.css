@@ -1,12 +1,14 @@
-.form-control{
-    margin: 0;
-    padding: 0;
+form{
+    margin: 0 !important;
+}
+
+input{
+    margin: 5px 0px !important;
 }
 
 .login-btn{
     background: #562EFF !important;
     border-radius: 0%;
-    font-size: 12px;
 }
 
 .register-link{
