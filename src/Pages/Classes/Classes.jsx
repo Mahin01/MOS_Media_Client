@@ -26,43 +26,7 @@ const Classes = () => {
 
   const filteredData = allClasses.filter((item) => item.status === "approved");
 
-  const handleAddToSelectedClass = (item) => {
-    const { ID, ClassName, InstructorName, StudentEnrolled, AvailableSeats, Price } = item;
-    if (user && user.email) {
-      const saveSelectedClass = {
-        selectedClassId: ID,
-        addedBy: user.email,
-        className: ClassName,
-        instructorName: InstructorName,
-        enrolled: StudentEnrolled,
-        seats_Available: AvailableSeats,
-        price: Price,
-        payment_status: false,
-      };
-      fetch("http://localhost:5173/student/selected-classes", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(saveSelectedClass),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            setDisabledClassIds((prevIds) => [...prevIds, ID]);
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Class added to my selected classes. Check dashboard for more.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-    }
-  };
 
-  const isButtonDisabledForItem = (ID) => disabledClassIds.includes(ID);
 
   return (
     <div>

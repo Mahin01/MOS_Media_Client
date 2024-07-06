@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import "./Register.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faMarsAndVenus, faPhone, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faMarsAndVenus, faPhone, faUpload, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
@@ -53,7 +53,7 @@ const Register = () => {
                         <div className="text-center lg:text-left content-start">
                         <h2 className='text-2xl font-bold'>Welcome to <span className='brand-text'>MOS Media</span></h2>
                         <h2 className="text-5xl font-bold pt-2">Register now!</h2>
-                        <p className="pt-3 text-gray-400">Already have an account? <a className='link register-link'>Login Here</a></p>
+                        <p className="pt-3 text-gray-400">Already have an account? <a href="/login" className='link register-link'>Login Here</a></p>
                         </div>
                         <div className="card w-full max-w-sm shadow-2xl bg-base-100">
                             <form onSubmit={handleSubmit(onSubmit)} className='card-body w-full'>
@@ -172,7 +172,7 @@ const Register = () => {
                             </div>
                                 
                             <div className="form-control">
-                                <input type='submit' className="btn text-white login-btn" />
+                                <button type='submit' className="btn text-white login-btn"><FontAwesomeIcon icon={faUserPlus} /> Register</button>
                             </div>
                         </form>
                         </div>
