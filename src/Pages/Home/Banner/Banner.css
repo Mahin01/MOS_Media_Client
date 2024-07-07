@@ -1,17 +1,19 @@
-.slider-img{
-    height: 500px;
+.banner{
+    background-color: #FAF1B9;
+    color: #1A1A1A;
 }
 
-.carousel-pointer{
-    border-radius: 100%;
+.banner-heading{
+    color: #302B70 !important;
 }
 
-.carousel-pointer:hover{
-    background-color: transparent;
+.register-btn{
+    background-color: #302B70;
+    color: #f1f2f2;
+    padding: 2px 10px !important;
+    font-size: 16px;
 }
 
-
-.prev-btn, .next-btn{
-    background-color: transparent !important;
-    box-shadow: none !important;
+.mask-diamond{
+    background-color: #FAF1B9;
 }
