@@ -3,8 +3,9 @@ import "./Banner.css";
 const Banner = () => {
     return (
             <>
-                <div className="banner p-10">
-                    <h1 className="banner-heading text-5xl font-bold">Learn The Art of Photography On The Go!</h1>
+                <div className="p-10 min-h-6" style={{ backgroundImage: "url('cover.jpg')",  backgroundRepeat: "no-repeat" }}>
+                <div className="hero-overlay"></div>
+                <h1 className="banner-heading text-5xl font-bold mb-5">Learn The Art of Photography On The Go!</h1>
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <img
                         src="./banner-img.jpg"
@@ -20,11 +21,11 @@ const Banner = () => {
                                     <li>15+ certified instructors</li>
                                     <li>20+ personalized classes</li>
                                 </ul>
-                                <a href="./register"><button className="register-btn rounded-2xl">Register Now!</button></a>
+                                <a href="./register"><button className="register-btn rounded-2xl mt-5">Register Now!</button></a>
                             </div>
                         </div>
+                        </div>
                     </div>
-                </div>
             </>
     );
 };

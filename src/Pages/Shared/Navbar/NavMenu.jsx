@@ -111,11 +111,6 @@ const NavMenu = () => {
                                 <button className="login-btn btn-sm"><NavLink to={"/login"}>Log in</NavLink></button>
                             </li>
                         </ul>
-                        <ul className="menu menu-sm">
-                            <li className="menu menu-sm">
-                                <button className="signup-btn btn-sm"><NavLink to={"/register"}>Sign up</NavLink></button>
-                            </li>
-                        </ul>
                     </div>
                     }
                     </div>
