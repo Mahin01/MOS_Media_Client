@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAuth } from "firebase/auth";
 
 const Profile = () => {
     return (
@@ -10,10 +11,10 @@ const Profile = () => {
             
                         <div class="">
                             <h1
-                                className="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
+                                className="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white text-center">
                                 Public Profile
                             </h1>
-                            <h2 className="text-grey text-sm mb-4 dark:text-gray-400">Edit Profile</h2>
+                            <h2 className="text-grey text-center text-sm mb-4 dark:text-gray-400">Edit Profile Info</h2>
                             <form>
                                     <div
                                         className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('./user.png')] bg-cover bg-center bg-no-repeat">
@@ -57,7 +58,7 @@ const Profile = () => {
                                 <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                                     <div class="w-full">
                                         <h3 class="dark:text-gray-300 mb-2">Sex</h3>
-                                        <select
+                                        <select disabled
                                                 class="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800">
                                                 <option disabled value="">Select Sex</option>
                                                 <option value="Male">Male</option>
