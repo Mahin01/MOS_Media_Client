@@ -21,6 +21,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
 import Contact from "../Pages/Contact/Contact";
+import Profile from "../Pages/Profile/Profile";
 
  export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ import Contact from "../Pages/Contact/Contact";
           {
             path:"/register",
             element: <Register></Register>
+          },
+          {
+            path:"/profile",
+            element: <Profile></Profile>
           }
         ],
     },

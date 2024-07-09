@@ -47,11 +47,6 @@ const NavMenu = () => {
 
                 { user ?
                     <div className="navbar-end">
-                        <div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content">
-                                <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/dashboard"}>Dashboard</NavLink></li>
-                            </ul>
-                        </div>
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                 <div className="indicator">
@@ -82,6 +77,11 @@ const NavMenu = () => {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content">
+                                <li><NavLink className={({ isActive }) => (isActive ? 'active-link' : "")} to={"/dashboard"}>Dashboard</NavLink></li>
+                            </ul>
+                        </div>
                     <div className="dropdown dropdown-end user-profile">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -94,7 +94,7 @@ const NavMenu = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>
-                            <a className="justify-between">
+                            <a href="/profile" className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
                             </a>
