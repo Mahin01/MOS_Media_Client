@@ -49,6 +49,7 @@ const Login = () => {
             navigate(from, { replace: true });
         })
     }
+
     return (
         <>
             <Helmet>
@@ -99,7 +100,7 @@ const Login = () => {
                                     <input type="password" name="pwd" id="default-search" className="block max-w-full mt-5 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required />
                                 </div>
                             <label className="label">
-                                <a href="#" className="label-text-alt text-gray-500 link link-hover">Forgot password?</a>
+                                <a href="/reset/password" className="label-text-alt text-blue-500 link link-hover">Forgot password?</a>
                             </label>
                             </div>
                             <div className="form-control">

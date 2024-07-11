@@ -22,6 +22,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
 import Contact from "../Pages/Contact/Contact";
 import Profile from "../Pages/Profile/Profile";
+import ForgotPwd from "../Pages/Login/ForgotPwd";
 
  export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import Profile from "../Pages/Profile/Profile";
           {
             path: "/login",
             element: <Login></Login>
+          },
+          {
+            path: "/reset/password",
+            element: <ForgotPwd></ForgotPwd>
           },
           {
             path:"/register",
