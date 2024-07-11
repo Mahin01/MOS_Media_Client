@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getAuth } from "firebase/auth";
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Profile = () => {
+    const [userData , setUserData] = useState([]);
+    const auth = useContext(AuthContext);
+    const {user} = auth;
+
+    useEffect(() => {
+        fetch('https://mos-media-server.vercel.app/users')
+        .then(res => res.json())
+        .then(data => {setUserData(data);
+        })    
+        .catch(error => console.error(error))
+    }, []);
+
+    const mailFilterData = userData.filter(item => item.email === user.email);
+    const phoneNo = mailFilterData.map(item => item.phoneNumber);
+    const gender = mailFilterData.map(item => item.gender);
+    
     return (
         <div>
             <section class="py-10 my-auto dark:bg-gray-900">
@@ -20,7 +37,6 @@ const Profile = () => {
                                         className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('./user.png')] bg-cover bg-center bg-no-repeat">
 
                                     <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
-
 
                                             <input type="file" name="profile" id="upload_profile" hidden required />
 
@@ -41,17 +57,16 @@ const Profile = () => {
                                 <h2 class="text-center mt-1 font-semibold dark:text-gray-300">Upload Profile Image
                                 </h2>
                                 <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                                    <div class="w-full  mb-4 mt-6">
-                                        <label for="" class="mb-2 dark:text-gray-300">First Name</label>
-                                        <input type="text"
-                                                class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                                placeholder="First Name" />
+                                    <div class="w-full mb-4 mt-6">
+                                        <label for="" class="mb-2 dark:text-gray-300">Full Name</label>
+                                        <input type="text" className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                        placeholder="Full Name" value={user?.displayName ? user.displayName : 'Back'} />
                                     </div>
-                                    <div class="w-full  mb-4 lg:mt-6">
-                                        <label for="" class=" dark:text-gray-300">Last Name</label>
+                                    <div class="w-full mb-4 lg:mt-6">
+                                        <label for="" class="mb-2 dark:text-gray-300">Phone Number</label>
                                         <input type="text"
                                                 class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                                placeholder="Last Name" />
+                                                placeholder="Phone Number" value={phoneNo}/>
                                     </div>
                                 </div>
 
