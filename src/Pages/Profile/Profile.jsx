@@ -15,7 +15,7 @@ const Profile = () => {
         .catch(error => console.error(error))
     }, []);
 
-    const mailFilterData = userData.filter(item => item.email === user.email);
+    const mailFilterData = userData.filter(item => item.email === user?.email);
     const phoneNo = mailFilterData.map(item => item.phoneNumber);
     const gender = mailFilterData.map(item => item.gender);
     
@@ -33,8 +33,7 @@ const Profile = () => {
                             </h1>
                             <h2 className="text-grey text-center text-sm mb-4 dark:text-gray-400">Edit Profile Info</h2>
                             <form>
-                                    <div
-                                        className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('./user.png')] bg-cover bg-center bg-no-repeat">
+                                    <div className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('./user.png')] bg-cover bg-center bg-no-repeat">
 
                                     <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
 

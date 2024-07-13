@@ -8,13 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMarsAndVenus, faPhone, faUpload, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {createUser, updateUserProfile, emailVerify} = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigateUser = useNavigate();
 
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
+                emailVerify()
                 updateUserProfile(data.name, data.photoUrl, data.phone_no)
                 .then(result => {
                     const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phone_no, address: data.address, role : "student"};

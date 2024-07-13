@@ -24,6 +24,7 @@ const ForgotPwd = () => {
                 }
             });
         })
+        form.reset();
     }
 
     return (
