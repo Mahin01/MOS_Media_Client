@@ -21,7 +21,6 @@ const Login = () => {
         userSignIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 Swal.fire({
                     title: 'User Login Successful.',
                     showClass: {

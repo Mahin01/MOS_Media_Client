@@ -6,6 +6,25 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const ForgotPwd = () => {
+    const {resetPwd} = useContext(AuthContext);
+
+    const handleReset = () => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        resetPwd(email)
+        .then(result => {
+            Swal.fire({
+                title: 'Password Reset Mail Successfully Sent.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+        })
+    }
 
     return (
         <div>
@@ -20,7 +39,7 @@ const ForgotPwd = () => {
                     <p className='text-sm mb-5'>To reset your password, enter your email below and submit. An email will be sent to you with instructions about how to complete the process.</p>
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
-                    <form className="card-body w-full">
+                    <form onSubmit={handleReset} className="card-body w-full">
                             <div className="form-control">
                                 <div className="relative">
                                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
