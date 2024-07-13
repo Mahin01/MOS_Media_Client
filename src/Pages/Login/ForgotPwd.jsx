@@ -1,19 +1,22 @@
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsSpin, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const ForgotPwd = () => {
+
     return (
         <div>
             <Helmet>
-                <title>MOS Media | Login</title>
+                <title>MOS Media | Reset Password</title>
             </Helmet>
             
             <div className="hero bg-base-200 min-h-screen">
                 <div className="lg:w-9/12 justify-content-center">
                     <div>
-                    <h2 className="text-2xl font-bold my-5">Reset Your Password</h2>
+                    <h2 className="text-2xl font-bold my-2">Reset Your Password</h2>
                     <p className='text-sm mb-5'>To reset your password, enter your email below and submit. An email will be sent to you with instructions about how to complete the process.</p>
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
@@ -36,7 +39,7 @@ const ForgotPwd = () => {
                                 </div>
                             </div>
                             <div className="form-control">
-                            <button type="submit" className="btn btn-primary login-btn"><FontAwesomeIcon icon={faRightToBracket} />Login</button>
+                            <button type="submit" className="btn btn-primary login-btn"><FontAwesomeIcon icon={faArrowsSpin} />Reset Password</button>
                             </div>
                         </form>
                     </div>

@@ -15,7 +15,7 @@ const Register = () => {
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
-                updateUserProfile(data.name, data.photoUrl)
+                updateUserProfile(data.name, data.photoUrl, data.phone_no)
                 .then(result => {
                     const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phone_no, address: data.address, role : "student"};
                     fetch('https://mos-media-server.vercel.app/users', {

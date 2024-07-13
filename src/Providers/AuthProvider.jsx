@@ -15,13 +15,14 @@ const AuthProvider = ({children}) => {
 
     const createUser = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password, phoneNumber);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const updateUserProfile = (name, photo ) => {
+    const updateUserProfile = (name, photo, phone ) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: photo,     
+            photoURL: photo,
+            phoneNumber: phone     
         });
     }
 
