@@ -15,10 +15,9 @@ const Register = () => {
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
-                emailVerify()
-                updateUserProfile(data.name, data.photoUrl, data.phone_no)
+                updateUserProfile(data.name, data.photoURL)
                 .then(result => {
-                    const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phone_no, address: data.address, role : "student"};
+                    const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phoneNum, address: data.address, role : "student"};
                     fetch('https://mos-media-server.vercel.app/users', {
                         method: 'POST', 
                         headers: {
@@ -30,6 +29,7 @@ const Register = () => {
                         .then(data => {
                             if (data.insertedId) {
                                 reset();
+                                emailVerify()
                     Swal.fire({
                     title: 'User Registration Successful. Please Log in to Learn the art of Photography',
                     showClass: {
@@ -110,7 +110,7 @@ const Register = () => {
                                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-gray-600">
                                         <FontAwesomeIcon icon={faPhone} />
                                     </div>
-                                        <input type="text" placeholder="Enter your phone number" {...register("phone_no")} name='phone_no' className="block max-w-full mt-5 p-4 ps-10 text-sm input input-bordered"/>
+                                        <input type='tel' placeholder="Enter your phone number" {...register("phoneNum")} name='phoneNum' pattern="[0-9]{11}" className="block max-w-full mt-5 p-4 ps-10 text-sm input input-bordered"/>
                                 </div>
                             </div>
                             <div className="form-control">
