@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMarsAndVenus, faPhone, faUpload, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
-    const {createUser, updateUserProfile, emailVerify} = useContext(AuthContext);
+    const {createUser, updateUserProfile, emailVerify, updateNumber} = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigateUser = useNavigate();
 
@@ -17,7 +17,7 @@ const Register = () => {
             .then(result => {
                 updateUserProfile(data.name, data.photoURL)
                 .then(result => {
-                    const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phoneNum, address: data.address, role : "student"};
+                    const saveUserToDb = {name: data.name, email:data.email, gender: data.gender, phoneNumber: data.phoneNum, address: data.address, photoUrl:data.photoURL, role : "student"};
                     fetch('https://mos-media-server.vercel.app/users', {
                         method: 'POST', 
                         headers: {
@@ -110,7 +110,7 @@ const Register = () => {
                                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-gray-600">
                                         <FontAwesomeIcon icon={faPhone} />
                                     </div>
-                                        <input type='tel' placeholder="Enter your phone number" {...register("phoneNum")} name='phoneNum' pattern="[0-9]{11}" className="block max-w-full mt-5 p-4 ps-10 text-sm input input-bordered"/>
+                                        <input type='number' min={11} placeholder="Enter your phone number" {...register("phoneNum")} name='phoneNum' className="block max-w-full mt-5 p-4 ps-10 text-sm input input-bordered"/>
                                 </div>
                             </div>
                             <div className="form-control">

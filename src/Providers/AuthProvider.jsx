@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import app from '../Configs/Firebase/firebase.config';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth"
-import axios from 'axios';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updatePhoneNumber, updateProfile} from "firebase/auth"
 import useAxiosPublic from '../hooks/useAxiosPublic';
 
 export const AuthContext = createContext(null);
@@ -22,11 +21,16 @@ const AuthProvider = ({children}) => {
         return sendEmailVerification(auth.currentUser);
     }
 
-    const updateUserProfile = (name, photo, phone ) => {
+    const updateUserProfile = (name, photo ) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: photo,
-            phoneNumber: phone     
+            photoURL: photo,  
+        });
+    }
+
+    const updateNumber = (phone) => {
+        return updatePhoneNumber(auth.currentUser, {
+            phoneNumber: phone
         });
     }
 
@@ -82,6 +86,7 @@ const AuthProvider = ({children}) => {
         createUser,
         emailVerify,
         updateUserProfile,
+        updateNumber,
         userSignIn,
         resetPwd,
         googleSignIn,
